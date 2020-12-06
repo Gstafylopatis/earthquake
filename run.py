@@ -8,7 +8,7 @@ def run():
 
     event = getEvent(printMenu())
     seismic_Event = SeismicEvent(event['name'], event['coord'], event['ptime'], event['stime'], event['max_amp'])
-    seismic_Event.printTimes()
+    seismic_Event.report()
 
 
 def printMenu():
@@ -25,7 +25,7 @@ def getEvent(selection):
     f = open("test.json")
     x = json.load(f)
     f.close()
-    return x['Event'][selection]
+    return x['Event'][selection-1]
 
 if __name__ == "__main__":
     run()
