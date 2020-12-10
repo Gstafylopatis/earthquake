@@ -1,14 +1,22 @@
 import json
-from earthquake import SeismicEvent 
-
-
+from earthquake import SeismicEvent
+from earthquake import Earthquake
 
 
 def run():
+    eventList = []
 
-    event = getEvent(printMenu())
-    seismic_Event = SeismicEvent(event['name'], event['coord'], event['ptime'], event['stime'], event['max_amp'])
-    seismic_Event.report()
+    while len(eventList) < 3:
+        newEvent = getEvent(printMenu())
+        seismicEvent = SeismicEvent(newEvent['name'], newEvent['coord'], newEvent['ptime'], newEvent['stime'],
+                                    newEvent['max_amp'])
+        # seismicEvent.report()
+        eventList.append(seismicEvent)
+
+    earthquake = Earthquake(eventList)
+    lat, lon = earthquake.calculate_epicenter()
+
+    print("Latitude = %s and longitude = %s" % (lat, lon))
 
 
 def printMenu():
@@ -26,6 +34,7 @@ def getEvent(selection):
     x = json.load(f)
     f.close()
     return x['Event'][selection-1]
+
 
 if __name__ == "__main__":
     run()
