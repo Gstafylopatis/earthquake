@@ -1,0 +1,34 @@
+{
+   "Event" : [
+        {
+            "name": "PLG_HL, Poligiros Chalkidiki",
+            "coord": [40.373280, 23.444481],
+            "ptime": "08:00:00", 
+            "stime": "08:00:49", 
+            "max_amp": 250
+        },
+        {
+            "name": "NEO_HL, Neochori Volos",
+            "coord": [39.30567, 23.22189],
+            "ptime": "08:00:00", 
+            "stime": "08:01:12", 
+            "max_amp": 50
+        },
+        {
+            "name": "LIA_HL, Limnos Island",
+            "coord": [39.89725, 25.18055],
+            "ptime": "08:00:00", 
+            "stime": "08:01:04", 
+            "max_amp": 100
+        },
+        {
+            "name": "hawai",
+            "coord": [19.359, 155.219],
+            "ptime": "00:00:03",
+            "stime": "00:00:16",
+            "max_amp": 0.158
+        }
+    ]
+}
+
+
