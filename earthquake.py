@@ -27,8 +27,8 @@ class SeismicEvent:
             For s-wave d = Vs * Ts
             Solve the system with 2 unknown vars.
         """
-        Vs = 3.67
-        Vp = 6.34
+        #Vs = 3.67
+        #Vp = 6.34
 
         wave_velocity = (Vs * Vp) / (Vp - Vs)
         distance = self.delta_time * wave_velocity
@@ -74,14 +74,19 @@ class Earthquake:
         self.lat0 = self.seismicEvents[0].coord[0]
         self.lon0 = self.seismicEvents[0].coord[1]
         self.radius0 = self.seismicEvents[0].distance_to_ep
+        self.magnitude0 = self.seismicEvents[0].magnitude
 
         self.lat1 = self.seismicEvents[1].coord[0]
         self.lon1 = self.seismicEvents[1].coord[1]
         self.radius1 = self.seismicEvents[1].distance_to_ep
+        self.magnitude1 = self.seismicEvents[1].magnitude
+
 
         self.lat2 = self.seismicEvents[2].coord[0]
         self.lon2 = self.seismicEvents[2].coord[1]
         self.radius2 = self.seismicEvents[2].distance_to_ep
+        self.magnitude2 = self.seismicEvents[2].magnitude
+
 
         # for event in self.seismicEvents:
         #     print(event)
@@ -133,7 +138,11 @@ class Earthquake:
         Convert back to lat/lon
         """
 
-        lat = degrees(asin(triPt[2] / earthRadius))
-        lon = degrees(atan2(triPt[1], triPt[0]))
+        lat = f"{(degrees(asin(triPt[2] / earthRadius))):.4f}"
+        lon = f"{(degrees(atan2(triPt[1], triPt[0]))):.4f}"
 
-        return lat, lon
+
+        #Lastly average magnitudes of earthquake
+        avg_magnitude = (self.magnitude0 + self.magnitude1 + self.magnitude2) / 3
+
+        return (lat, lon), avg_magnitude

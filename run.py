@@ -1,40 +1,43 @@
 import json
+import timeit
+
 from earthquake import SeismicEvent
 from earthquake import Earthquake
+import time
 
 
 def run():
+    events = getEvents()
     eventList = []
 
-    while len(eventList) < 3:
-        newEvent = getEvent(printMenu())
-        seismicEvent = SeismicEvent(newEvent['name'], newEvent['coord'], newEvent['ptime'], newEvent['stime'],
-                                    newEvent['max_amp'])
+    for event in events:
+        seismicEvent = SeismicEvent(event['name'], event['coord'], event['ptime'], event['stime'],
+                                    event['max_amp'])
         # seismicEvent.report()
         eventList.append(seismicEvent)
 
+    tic = time.perf_counter()
     earthquake = Earthquake(eventList)
-    lat, lon = earthquake.calculate_epicenter()
+    coord, magnitude = earthquake.calculate_epicenter()
+    toc = time.perf_counter()
 
-    print("Latitude = %s and longitude = %s" % (lat, lon))
+    magnitude = f"{magnitude:.2f}"
 
-
-def printMenu():
-
-    print("1. Load Eureka Event")
-    print("2. Load Elko Event")
-    print("3. Load Las Vegas Event")
-    print(">", end=' ')
-    return int(input())
+    print("Earthquake magnitude: %s" % magnitude)
+    print("Coordinates of epicenter (lat,lon): %s" % (coord,))
+    print(f"Trilateration calculation completed in {toc - tic:0.5f} seconds")
 
 
-def getEvent(selection):
 
+def getEvents():
     f = open("test.json")
     x = json.load(f)
     f.close()
-    return x['Event'][selection-1]
+    return x['Event']
 
 
 if __name__ == "__main__":
+    tic = time.perf_counter()
     run()
+    toc = time.perf_counter()
+    print(f"Whole Execution time = {toc-tic:.5f}")
