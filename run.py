@@ -15,29 +15,29 @@ def run():
                                     event['max_amp'])
         # seismicEvent.report()
         eventList.append(seismicEvent)
+        print(f"STATION: %s , MAGNITUDE : {seismicEvent.magnitude:0.2f}" % seismicEvent.name)
 
-    tic = time.perf_counter()
+    # tic = time.perf_counter()
     earthquake = Earthquake(eventList)
     coord, magnitude = earthquake.calculate_epicenter()
-    toc = time.perf_counter()
+    # toc = time.perf_counter()
 
     magnitude = f"{magnitude:.2f}"
 
     print("Earthquake magnitude: %s" % magnitude)
     print("Coordinates of epicenter (lat,lon): %s" % (coord,))
-    print(f"Trilateration calculation completed in {toc - tic:0.5f} seconds")
-
+    # print(f"Trilateration calculation completed in {toc - tic:0.5f} seconds")
 
 
 def getEvents():
-    f = open("test.json")
+    f = open("ionian_test.json")
     x = json.load(f)
     f.close()
     return x['Event']
 
 
 if __name__ == "__main__":
-    tic = time.perf_counter()
+    # tic = time.perf_counter()
     run()
-    toc = time.perf_counter()
-    print(f"Whole Execution time = {toc-tic:.5f}")
+    # toc = time.perf_counter()
+    # print(f"Whole Execution time = {toc-tic:.5f}")
