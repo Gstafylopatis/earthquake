@@ -1,5 +1,6 @@
 import json
 import timeit
+from flask import Flask
 
 from earthquake import SeismicEvent
 from earthquake import Earthquake

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+        <link rel="stylesheet"  href="{{ url_for('static', filename='css/map.css') }}">
+
+        <meta charset="UTF-8">
+        <title>A basic map</title>
+
+    </head>
+    
+    <body>
+        <div class="info">
+
+            <h2>Stations Info</h2>
+            <p>"{{events[0].name, events[0].coord, events[0].max_amplitude}}"</p>
+            <p>"{{events[1].name, events[1].coord, events[1].max_amplitude}}"</p>
+            <p>"{{events[2].name, events[2].coord, events[2].max_amplitude}}"</p>
+            <button id="test2">Submit</button>
+
+        </div>
+
+        <div id="map"></div>
+        <script async defer
+		  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9OX0ztoM73i9ZgUPJQQVKcmZrxSaRjts&callback=initMap">
+        </script>
+    </body>
+
+</html>
