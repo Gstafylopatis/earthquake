@@ -30,7 +30,7 @@ def run():
 
 
 def getEvents():
-    f = open("ionian_test.json")
+    f = open("test.json")
     x = json.load(f)
     f.close()
     return x['Event']

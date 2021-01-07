@@ -32,6 +32,7 @@ class SeismicEvent:
 
         wave_velocity = (Vs * Vp) / (Vp - Vs)
         distance = self.delta_time * wave_velocity
+        print(distance)
         return distance
 
     def calculate_magnitude(self):
