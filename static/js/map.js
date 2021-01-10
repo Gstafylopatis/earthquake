@@ -13,17 +13,17 @@ function initMap(){
     new google.maps.Marker({
        position: myPos,
         map,
-        title: hello,
+        title: hello
     });
-
-    alert(5+6);
-
 
 
 }
-document.getElementById("test2").addEventListener("onclick", myFunction);
 
 function myFunction() {
-    document.write("hello");
+    new google.maps.Marker({
+        position: {lat:40.000, lng: 35.000},
+        map,
+        title: marker
+    });
 }
 
